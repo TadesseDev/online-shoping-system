@@ -58,7 +58,7 @@ include "header.php";
 					<?php 
 								include 'db.php';
 								$product_id = $_GET['p'];
-								
+								echo $product_id."mark";
 								//$sql = " SELECT * FROM products ";
 								$sql = " SELECT * FROM products WHERE product_id = $product_id";
 								if (!$con) {
@@ -70,9 +70,6 @@ include "header.php";
 									while($row = mysqli_fetch_assoc($result)) 
 									{
 									echo '
-									
-                                    
-                                
                                 <div class="col-md-5 col-md-push-2">
                                 <div id="product-main-img">
                                     <div class="product-preview">
@@ -170,7 +167,12 @@ include "header.php";
 								<div class="btn-group" style="margin-left: 25px; margin-top: 15px">
 								<button class="add-to-cart-btn" pid="'.$row['product_id'].'"  id="product" ><i class="fa fa-shopping-cart"></i> add to cart</button>
                                 </div>
-								
+								<form method="post" action="buy.php">
+								<input type="hidden" name="product_id" value="'.$product_id.'">
+								<div class="btn-group" style="margin-left: 25px; margin-top: 15px">
+								<button type="submit" class="add-to-cart-btn" id="buy-btn" pid="'.$row['product_id'].'"  id="product" > buy this item</button>
+								</div>
+								</form>
 								
 							</div>
 

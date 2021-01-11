@@ -45,7 +45,9 @@
                                     <div class="form-group">
                                         <input class="input form-control input-borders" type="text" name="address2" id="address2" placeholder="City">
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <input class="input form-control input-borders" type="number" name="BacnkAccount" id="BacnkAccount" placeholder="Banck Account Number">
+                                    </div>
                                     
                                     <div style="form-group">
                                        <input class="primary-btn btn-block"  value="Sign Up" type="submit" name="signup_button">

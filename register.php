@@ -11,12 +11,13 @@ if (isset($_POST["f_name"])) {
 	$mobile = $_POST['mobile'];
 	$address1 = $_POST['address1'];
 	$address2 = $_POST['address2'];
+	$BacnkAccount = $_POST['BacnkAccount'];
 	$name = "/^[a-zA-Z ]+$/";
 	$emailValidation = "/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9]+(\.[a-z]{2,4})$/";
 	$number = "/^[0-9]+$/";
 
 if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empty($repassword) ||
-	empty($mobile) || empty($address1) || empty($address2)){
+	empty($mobile) || empty($address1) || empty($address2) || empty($BacnkAccount)){
 		
 		echo "
 			<div class='alert alert-warning'>
@@ -118,6 +119,9 @@ if(empty($f_name) || empty($l_name) || empty($email) || empty($password) || empt
 		$run_query = mysqli_query($con,$sql);
 		$_SESSION["uid"] = mysqli_insert_id($con);
 		$_SESSION["name"] = $f_name;
+		$_SESSION["Account_number"]=$BacnkAccount;
+		$sql1="insert into bank_info values(".$_SESSION["uid"].",".$BacnkAccount.",".rand(500,100000).");";
+		$run_query = mysqli_query($con,$sql1);
 		$ip_add = getenv("REMOTE_ADDR");
 		$sql = "UPDATE cart SET user_id = '$_SESSION[uid]' WHERE ip_add='$ip_add' AND user_id = -1";
 		if(mysqli_query($con,$sql)){

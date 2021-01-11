@@ -20,7 +20,18 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
 		//we have created a cookie in login_form.php page so if that cookie is available means user is not login
         
 	//if user record is available in database then $count will be equal to 1
-	if($count == 1){		   	
+	if($count == 1){
+			$sql_banckInfo="select bankAccount from bank_info where user_id=".$_SESSION['uid'];
+			$run_bank_query = mysqli_query($con,$sql_banckInfo);	
+			$sql_banckInfo_count=mysqli_num_rows($run_bank_query);
+			$bank_row = mysqli_fetch_array($run_bank_query);
+			if($sql_banckInfo_count>0){
+			$_SESSION["Account_number"]=$bank_row["bankAccount"];
+			echo "<script>alert('banck account found');console.log('account found')</script>";	
+			}
+			else{
+				echo "<script>alert('banck account not found');console.log('account not found')</script>";	
+			}	   	
 			if (isset($_COOKIE["product_list"])) {
 				$p_list = stripcslashes($_COOKIE["product_list"]);
 				//here we are decoding stored json product list cookie to normal array

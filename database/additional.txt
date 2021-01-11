@@ -1,0 +1,5 @@
+use ecommerece;
+drop table bank_info;
+CREATE table bank_info(user_id int(10),bankAccount int(15) primary key,amount int(30));
+insert into bank_info values(12,123456,1000);
+select bankAccount from bank_info where user_id=12;
